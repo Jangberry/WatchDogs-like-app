@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">ctOS Client\n</string>
+    <string name="IPraspi">Public Raspberry\'s IP</string>
+    <string name="Unknown_host">Unknown host</string>
+    <string name="title_activity_connection">ConnectionActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="unableconnecthost">Unable to connect to host</string>
+    <string name="title_activity_bouttons">ButtonsActivity</string>
+    <string name="alreadyconnected">Already connected, retry, try to restart app, or report this bug on Github</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="connection">Connection to Raspberry</string>
+    <string name="rotationlock">Lock the rotation to portrait to avoid connection issues</string>
+    <string name="action_settings">Settings</string>
+    <string name="connecting">Already trying to connect...</string>
+    <string name="connect">Connect</string>
+    <string name="connected">Connected</string>
+    <string name="connectionfailed">Connection failed</string>
+</resources>
