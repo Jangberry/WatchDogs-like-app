@@ -43,7 +43,7 @@
                 android:layout_marginEnd="15dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="Menuoppenner"
+                android:onClick="menuoppenner"
                 android:visibility="visible"
                 app:elevation="10dp"
                 app:fabSize="normal"

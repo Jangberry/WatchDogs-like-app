@@ -17,12 +17,11 @@ import java.io.IOException;
 public class BouttonActivity extends AppCompatActivity {
     private View menuaff;
     private Boolean menuoppen = false;
-    private SocketService socketservice = MainActivity.socketservice;
-    private boolean mBound = MainActivity.mBound;
-    private boolean connected = MainActivity.connected;
+    private SocketService socketservice;
+    boolean mBound = false;
     private String onScreenBouttonCode = "-none-";
     private View mainbutton;
-    private ServiceConnection serviceconnection = new ServiceConnection() {
+    protected ServiceConnection serviceconnection = new ServiceConnection() {
 
         @Override
         public void onServiceConnected(ComponentName className, IBinder service) {
@@ -42,7 +41,7 @@ public class BouttonActivity extends AppCompatActivity {
         Intent serviceintent = new Intent(this, SocketService.class);
         bindService(serviceintent, serviceconnection, Context.BIND_AUTO_CREATE);
     }
-
+/*
     protected void onDestroy() {
         super.onDestroy();
         try {
@@ -52,6 +51,20 @@ public class BouttonActivity extends AppCompatActivity {
         }
         unbindService(serviceconnection);
         mBound = false;
+    }*/
+
+    public void disconnectSocket() {
+        try {
+            try {
+                socketservice.socket.close();
+            } catch (IOException e) {
+                Log.e("IO", "", e);
+            }
+            unbindService(serviceconnection);
+            mBound = false;
+        } catch (Exception e) {
+            Log.i("Socket", "No socket connected");
+        }
     }
 
     @Override
@@ -60,15 +73,14 @@ public class BouttonActivity extends AppCompatActivity {
         setContentView(R.layout.activity_boutton);
         menuaff = findViewById(R.id.MenuIncluder);
         mainbutton = findViewById(R.id.MainButton);
-        Toast.makeText(this, R.string.rotationlock, Toast.LENGTH_SHORT).show();
     }
 
-    public void ActionChoice(View view) {
+    public void actionChoice(View view) {
         onScreenBouttonCode = view.getContentDescription().toString();
         mainbutton.setForeground(view.getForeground());
-        Log.i("Choice", "Code = "+onScreenBouttonCode);
-        Log.i("Choice", "Drawable = "+view.getForeground().toString());
-        Menuoppenner(null);
+        Log.i("Choice", "Code = " + onScreenBouttonCode);
+        Log.i("Choice", "Drawable = " + view.getForeground().toString());
+        menuoppenner(null);
     }
 
     public void onMainBouttonClick(View view) {
@@ -86,11 +98,11 @@ public class BouttonActivity extends AppCompatActivity {
                 }
             }
         } else {
-            Menuoppenner(null);
+            menuoppenner(null);
         }
     }
 
-    public void Menuoppenner(View view) {
+    public void menuoppenner(View view) {
         if (!menuoppen) {
             menuaff.setVisibility(View.VISIBLE);
             menuoppen = true;

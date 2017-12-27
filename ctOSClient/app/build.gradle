@@ -1,13 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
+    compileSdkVersion 26
     defaultConfig {
         applicationId "fr.mistercraft.dedsec.ctosclient"
-        minSdkVersion 24
+        minSdkVersion 23
         targetSdkVersion 26
+        versionCode 2
         versionName '1.1'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionNameSuffix 'Clara'
     }
     buildTypes {
         release {
@@ -17,6 +19,7 @@ android {
     }
     productFlavors {
     }
+    buildToolsVersion '27.0.2'
 }
 
 dependencies {
@@ -28,5 +31,4 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.android.support:cardview-v7:26.1.0'
-    implementation 'com.google.android.gms:play-services-ads:11.6.0'
 }

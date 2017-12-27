@@ -14,11 +14,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
     protected static final String SavedIP_location = "fr.mistercraft.dedsec.ctosclient.IP";
-    protected static SocketService socketservice;
-    static boolean mBound = false;
-    public static boolean connected = false;
+    private SocketService socketservice;
+    boolean mBound = false;
+    protected static boolean connected = false;
     protected final Context context = this;
     private String ip;
     private Boolean connecting = false;
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         View progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
+        BouttonActivity a = new BouttonActivity();
+        a.disconnectSocket();
     }
 
     protected void onDestroy() {
@@ -67,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         mBound = false;
     }
 
-    public void SaveIP (View view) {
+    public void saveIP (View view) {
         EditText IP = findViewById(R.id.IP);
         ip = IP.getText().toString();
         SharedPreferences SavedIP = this.getSharedPreferences(SavedIP_location, MODE_PRIVATE);
@@ -77,21 +81,20 @@ public class MainActivity extends AppCompatActivity {
         try
         {
             if(!connecting) {
-                ConnectThread connectthread = new ConnectThread();
+                connectThread connectThread = new connectThread();
                 View progressBar = findViewById(R.id.progressBar);
                 progressBar.setVisibility(View.VISIBLE);
                 //TODO : Make loading circle INVISIBLE when connection fail
-                connectthread.start();
+                connectThread.start();
             }else{
                 Toast.makeText(context, R.string.connecting, Toast.LENGTH_SHORT).show();
             }
         } catch (Throwable e) {Toast.makeText(this, "Erreur "+e, Toast.LENGTH_SHORT).show();Log.e("e","Erreur", e);}
     }
-    class ConnectThread extends Thread {
+    class connectThread extends Thread {
         public void run() {
             connecting = true;
-
-            socketservice.SocketConnect(ip);
+            socketservice.socketConnect(ip);
             connecting = false;
         }
     }

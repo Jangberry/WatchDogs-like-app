@@ -40,7 +40,7 @@
                 android:contentDescription="basicFence"
                 android:foreground="@drawable/gate"
                 android:foregroundGravity="right|center_vertical"
-                android:onClick="ActionChoice"
+                android:onClick="actionChoice"
                 android:text="Fence gate" />
 
             <Button
@@ -50,7 +50,7 @@
                 android:contentDescription="basicDoor"
                 android:foreground="@drawable/door"
                 android:foregroundGravity="right|center_vertical"
-                android:onClick="ActionChoice"
+                android:onClick="actionChoice"
                 android:text="Door" />
 
         </LinearLayout>

@@ -30,10 +30,10 @@ public class SocketService extends Service {
     }
 
 
-    protected class SendThread implements Runnable {
+    protected class sendThread implements Runnable {
         private String message;
 
-        public SendThread(String message) {
+        public sendThread(String message) {
             this.message = message;
         }
 
@@ -56,7 +56,7 @@ public class SocketService extends Service {
     }
 
     public void send(String message) {
-        SendThread sending = new SendThread(message);
+        sendThread sending = new sendThread(message);
         new Thread(sending).start();
     }
 
@@ -68,7 +68,7 @@ public class SocketService extends Service {
         }
     }
     // TODO : Have a recv method
-    public void SocketConnect(String ip) {
+    public void socketConnect(String ip) {
         try {
             SocketAddress socaddrs = new InetSocketAddress(ip, 4277);
             socket = new Socket();
